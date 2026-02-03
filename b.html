@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nergis Buketi</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #d1e2ed; /* Yeni, daha açık arka plan rengi */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        /* SVG Çizim Alanı */
+        svg {
+            width: 450px; /* Daha büyük SVG alanı */
+            height: 550px;
+            overflow: visible; /* Çiçeklerin taşmasına izin ver */
+        }
+
+        /* Buton Stili */
+        #toggleBtn {
+            margin-top: 30px; /* Konumu biraz aşağıya çekildi */
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #e6b800; /* Sarı buton */
+            color: white;
+            border: none;
+            border-radius: 25px;
+            transition: background 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        #toggleBtn:hover {
+            background-color: #cca300;
+        }
+
+        /* Not Stili */
+        #note {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #555;
+            font-style: italic;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.5s ease;
+            height: 0;
+            overflow: hidden;
+        }
+
+        #note.show {
+            opacity: 1;
+            transform: translateY(0);
+            height: auto;
+        }
+
+        /* Vazo dış çizgisi */
+        .vazo-border {
+            fill: none;
+            stroke: #8a97a3; /* Gri renk */
+            stroke-width: 1.5;
+        }
+
+        /* Vazo iç dolgusu (hafif şeffaf) */
+        .vazo-fill {
+            fill: #b0bbc4; /* Açık gri-mavi */
+            opacity: 0.3; /* Daha şeffaf */
+        }
+
+        /* Vazo altın detayı */
+        .vazo-gold {
+            fill: #c5a059; /* Altın sarısı */
+        }
+
+        /* Çiçek sapları */
+        .stem {
+            stroke: #4a6741; /* Yeşil */
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* Çiçek yaprakları */
+        .petal {
+            fill: white;
+            stroke: #555; /* Daha belirgin dış çizgi */
+            stroke-width: 0.5;
+        }
+
+        /* Çiçek ortası */
+        .center {
+            fill: #ffcc00; /* Sarı */
+            stroke: #e6ac00; /* Koyu sarı kenar */
+            stroke-width: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <svg viewBox="0 0 200 250">
+        <path class="vazo-fill" d="M70,130 Q70,120 100,120 Q130,120 130,130 L135,220 Q135,235 100,235 Q65,235 65,220 Z" />
+        <path class="vazo-border" d="M70,130 Q70,120 100,120 Q130,120 130,130 L135,220 Q135,235 100,235 Q65,235 65,220 Z" />
+        <rect x="75" y="115" width="50" height="8" rx="2" class="vazo-gold" />
+
+        <g>
+            <path class="stem" d="M100,120 Q90,90 80,70" />
+            <path class="stem" d="M100,120 Q110,90 120,70" />
+            <path class="stem" d="M100,120 Q105,80 100,60" />
+            <path class="stem" d="M100,120 Q85,100 60,90" />
+            <path class="stem" d="M100,120 Q115,100 140,90" />
+            <path class="stem" d="M100,120 Q70,110 50,100" />
+            <path class="stem" d="M100,120 Q130,110 150,100" />
+            <path class="stem" d="M100,120 Q95,70 70,55" />
+            <path class="stem" d="M100,120 Q105,70 130,55" />
+            <path class="stem" d="M100,120 Q80,80 55,75" />
+            <path class="stem" d="M100,120 Q120,80 145,75" />
+             <path class="stem" d="M100,120 Q100,75 100,50" />
+        </g>
+
+        <g id="flowers">
+            <g transform="translate(80, 60)">
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(0)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(60)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(120)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(180)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(240)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(300)"/>
+                <circle cx="0" cy="0" r="4" class="center" />
+            </g>
+            <g transform="translate(110, 50)">
+                 <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(0)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(60)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(120)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(180)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(240)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(300)"/>
+                <circle cx="0" cy="0" r="4" class="center" />
+            </g>
+            <g transform="translate(60, 90)">
+                 <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(0)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(60)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(120)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(180)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(240)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(300)"/>
+                <circle cx="0" cy="0" r="4" class="center" />
+            </g>
+            <g transform="translate(140, 90)">
+                 <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(0)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(60)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(120)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(180)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(240)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(300)"/>
+                <circle cx="0" cy="0" r="4" class="center" />
+            </g>
+            <g transform="translate(100, 85)">
+                 <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(0)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(60)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(120)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(180)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(240)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(300)"/>
+                <circle cx="0" cy="0" r="4.5" class="center" />
+            </g>
+            <g transform="translate(70, 55)">
+                 <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(0)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(60)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(120)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(180)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(240)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(300)"/>
+                <circle cx="0" cy="0" r="4" class="center" />
+            </g>
+             <g transform="translate(130, 55)">
+                 <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(0)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(60)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(120)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(180)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(240)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(300)"/>
+                <circle cx="0" cy="0" r="4" class="center" />
+            </g>
+            <g transform="translate(55, 75)">
+                 <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(0)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(60)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(120)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(180)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(240)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(300)"/>
+                <circle cx="0" cy="0" r="4" class="center" />
+            </g>
+            <g transform="translate(145, 75)">
+                 <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(0)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(60)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(120)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(180)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(240)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(300)"/>
+                <circle cx="0" cy="0" r="4" class="center" />
+            </g>
+             <g transform="translate(100, 50)">
+                 <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(0)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(60)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(120)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(180)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(240)"/>
+                <path class="petal" d="M0,0 Q-10,-10 0,-20 Q10,-10 0,0" transform="rotate(300)"/>
+                <circle cx="0" cy="0" r="4.5" class="center" />
+            </g>
+        </g>
+    </svg>
+
+    <br>
+    <button id="toggleBtn">Tıkla</button>
+    <div id="note">Ben seni unutmadım, unutamam zaten...</div>
+</div>
+
+<script>
+    const btn = document.getElementById('toggleBtn');
+    const note = document.getElementById('note');
+
+    btn.addEventListener('click', () => {
+        note.classList.toggle('show');
+    });
+</script>
+
+</body>
+</html>
